@@ -12,7 +12,7 @@ app.use(cors());
 app.use("/alunos", alunos);
 app.use("/professores", professores);
 app.use("/funcionarios", funcionarios);
-app.use("/login", auth);
+app.use("/auth", auth);
 console.log(process.env.PORT || 5000)
 app.listen(process.env.PORT || 5000, () => {
     console.log("Hello World");

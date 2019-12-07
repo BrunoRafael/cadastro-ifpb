@@ -9,10 +9,34 @@ mongoose.connect("mongodb+srv://ifpb:xrPkXujT5YOwgcFA@cluster0-7mbkm.mongodb.net
 const AlunoModel = require('./model/Aluno');
 const FuncionarioModel = require('./model/Funcionario');
 const ProfessorModel = require('./model/Professor');
+const UsuarioModel = require('./model/Usuario');
+
+let login = (credentials) => {
+    return UsuarioModel.find({'login': credentials.login, 'senha': credentials.senha}, 
+    (err, response) => {
+        if(err){
+            throw new Error("Usuário não encontrado!");
+        } else {
+            return response;
+        }
+    });
+}
+
+let addNewUser = (credentials) => {
+    return UsuarioModel.find({'login': credentials.login }, 
+    (err, response) => {
+        if(err){
+            throw new Error("Login duplicado");
+        } else {
+            let usuario = new UsuarioModel(credentials);
+            return usuario.save();
+        }
+    })
+}
 
 let saveAluno = (dados)=>{
-    const Aluno = new AlunoModel(dados);
-    return Aluno.save();
+    const aluno = new AlunoModel(dados);
+    return aluno.save();
 }
 
 let deleteAluno = (matricula) => {
@@ -50,10 +74,12 @@ let saveProfessor = (dados)=>{
 }
 
 module.exports = {
+    login: login,
     saveAluno: saveAluno,
     saveFuncionario: saveFuncionario,
     saveProfessor: saveProfessor,
     removeAluno: removeAluno,
     getAllAlunos: getAllAlunos,
-    deleteAluno: deleteAluno
+    deleteAluno: deleteAluno,
+    addNewUser: addNewUser
 };
