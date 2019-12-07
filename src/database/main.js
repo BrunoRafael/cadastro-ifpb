@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/alunos");
+mongoose.connect("mongodb+srv://ifpb:xrPkXujT5YOwgcFA@cluster0-7mbkm.mongodb.net/cadastros?retryWrites=true&w=majority", 
+(err) => {
+    if(err){
+        console.log("Falhou conexão");
+    }
+});
 
 const AlunoModel = require('./model/Aluno');
 const FuncionarioModel = require('./model/Funcionario');

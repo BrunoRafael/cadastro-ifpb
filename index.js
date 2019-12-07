@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/alunos", { useNewUrlParser: true });
 const alunos = require("./src/alunos/alunosRouter");
 const professores = require("./src/professores/professoresRouter");
 const funcionarios = require("./src/funcionarios/funcionariosRouter");
