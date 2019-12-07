@@ -13,8 +13,7 @@ app.use("/alunos", alunos);
 app.use("/professores", professores);
 app.use("/funcionarios", funcionarios);
 app.use("/login", auth);
-
-app.listen(3000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log("Hello World");
 });
 
