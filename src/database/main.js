@@ -28,7 +28,7 @@ let addNewUser = (credentials) => {
         if(err){
             throw new Error("Não foi possível salvar usuário");
         }
-        if(response){
+        if(response.length){
             throw new Error("Login duplicado");
         } else {
             let usuario = new UsuarioModel(credentials);
