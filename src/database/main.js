@@ -26,6 +26,9 @@ let addNewUser = (credentials) => {
     return UsuarioModel.find({'login': credentials.login }, 
     (err, response) => {
         if(err){
+            throw new Error("Não foi possível salvar usuário");
+        }
+        if(response){
             throw new Error("Login duplicado");
         } else {
             let usuario = new UsuarioModel(credentials);
